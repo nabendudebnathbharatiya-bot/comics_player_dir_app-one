@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>চক্র কমিকস (এডিশন -1) | ডিরেক্টরি</title>
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        html { scroll-behavior: smooth; font-size: 16px; transition: font-size 0.3s ease; }
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #1e293b;
+            padding-bottom: 80px; 
+        }
+        .glass { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .glass-card { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1); }
+        .comic-card { transition: all 0.3s ease; }
+        .comic-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+        button:active, a:active { transform: scale(0.95); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.5); border-radius: 4px; }
+        .card-image-wrapper { aspect-ratio: 1 / 1; overflow: hidden; }
+    </style>
+</head>
+<body>
+
+    <div class="sticky top-0 z-50 w-full shadow-sm">
+        <header class="glass px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center text-white text-xl font-bold shadow-md">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold text-gray-800 leading-tight">চক্র কমিকস <span class="text-sm font-normal text-indigo-700">(এডিশন -1)</span></h1>
+                    <p class="text-xs text-gray-600 font-medium tracking-wide">আরো ফ্যান্টাসি চাই</p>
+                </div>
+            </div>
+            
+            <a href="https://chakra-login-app.vercel.app/" target="_self" class="flex items-center gap-2 bg-white/70 hover:bg-white text-indigo-700 px-4 py-2 rounded-full font-semibold transition shadow-sm border border-indigo-100">
+                <i class="fas fa-arrow-left"></i> <span class="hidden sm:inline">Back</span>
+            </a>
+        </header>
+
+        <div id="adBannerContainer" class="w-full bg-white/80 border-b border-white/50 h-28 sm:h-32 md:h-40 flex justify-center items-center overflow-hidden cursor-pointer transition-all duration-500">
+            <a id="adLink" href="#" target="_blank" class="w-full h-full block">
+                <img id="adImage" src="" alt="Advertisement" class="w-full h-full object-cover">
+            </a>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-6 max-w-5xl">
+        <div class="mb-8 mt-4 text-center glass-card rounded-2xl p-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">কমিকস ডিরেক্টরি</h2>
+            <p class="text-gray-600 mb-6 text-lg">এই ডিরেক্টরিতে আপনি পাবেন সাইন্স ফিকশন, থ্রিলার এবং ফ্যান্টাসি জগতের সেরা সব কমিকস কালেকশন।</p>
+            
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <div class="relative w-full max-w-md">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                    <input type="text" id="searchInput" placeholder="কমিক আইডি লিখে খুঁজুন (যেমন: 101)" class="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-white/50 bg-white/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all shadow-inner text-gray-700 font-medium">
+                </div>
+
+                <div class="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-xl border border-white/50">
+                    <span class="text-sm font-semibold text-gray-700">ফন্ট সাইজ:</span>
+                    <button onclick="changeFontSize(-1)" class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 hover:bg-indigo-200 font-bold">-</button>
+                    <button onclick="changeFontSize(1)" class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 hover:bg-indigo-200 font-bold">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="comicsGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            </div>
+    </main>
+
+    <nav class="fixed bottom-0 w-full glass border-t border-white/40 md:hidden z-50">
+        <div class="flex justify-around items-center py-3">
+            <a href="#" class="flex flex-col items-center text-indigo-600">
+                <i class="fas fa-home text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">হোম</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 transition">
+                <i class="fas fa-heart text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">ফেভারিট</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 transition">
+                <i class="fas fa-user text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">প্রোফাইল</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // ==========================================
+        // গ্লোবাল অ্যাড ম্যানেজমেন্ট লজিক
+        // ==========================================
+        let comicsData = [];
+        let adData = [];
+        let currentAdIndex = 0;
+        
+        // আপনার গ্লোবাল বেস ইউআরএল
+        const GITHUB_BASE = 'https://nabendudebnathbharatiya-bot.github.io/webpage_gallery_directory_app/ad-manage/';
+        const applyCacheBuster = url => url.includes('?') ? `${url}&v=${new Date().getTime()}` : `${url}?v=${new Date().getTime()}`;
+
+        async function initApp() {
+            try {
+                // ১. Master Switch থেকে মোড চেক করা
+                const switchRes = await fetch(applyCacheBuster(GITHUB_BASE + 'ad_switch.txt'));
+                let mode = 'regular';
+                if(switchRes.ok) {
+                    const text = await switchRes.text();
+                    const lines = text.split('\n');
+                    for (let line of lines) {
+                        let trimmed = line.trim().toLowerCase();
+                        if (trimmed !== '' && !trimmed.startsWith('//') && !trimmed.startsWith('#')) {
+                            mode = trimmed;
+                            break; 
+                        }
+                    }
+                }
+
+                // মোড অনুযায়ী ফাইল সেট করা
+                let adFileName = (mode === 'special') ? 'ads1.txt' : 'ads.txt';
+                let bridgePage = (mode === 'special') ? 'ad_bridge-one.html' : 'ad_bridge.html';
+
+                console.log(`Running in '${mode}' mode.`);
+
+                // ২. Dynamic Banner Ad ফেচ করা
+                fetch(applyCacheBuster(GITHUB_BASE + adFileName))
+                    .then(res => res.text())
+                    .then(text => {
+                        const lines = text.split('\n');
+                        lines.forEach(line => {
+                            const trimmedLine = line.trim();
+                            if (trimmedLine !== '' && !trimmedLine.startsWith('//') && !trimmedLine.startsWith('#')) {
+                                const parts = trimmedLine.split('|');
+                                if (parts.length >= 2) {
+                                    adData.push({ img: parts[0].trim(), link: parts[1].trim() });
+                                }
+                            }
+                        });
+                        
+                        if (adData.length > 0) {
+                            updateAd();
+                            setInterval(updateAd, 5000);
+                        } else {
+                            document.getElementById('adBannerContainer').style.display = 'none';
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Ad loading error:", err);
+                        document.getElementById('adBannerContainer').style.display = 'none';
+                    });
+
+                // ৩. Local Comics ফেচ এবং Bridge Page Redirection যুক্ত করা
+                fetch(applyCacheBuster('comics.txt')) // এটি লোকাল ডিরেক্টরি থেকে ডাটা নেবে
+                    .then(res => res.text())
+                    .then(text => {
+                        const lines = text.split('\n');
+                        lines.forEach(line => {
+                            const trimmedLine = line.trim();
+                            if (trimmedLine !== '' && !trimmedLine.startsWith('//') && !trimmedLine.startsWith('#')) {
+                                const parts = trimmedLine.split('|');
+                                if (parts.length >= 6) {
+                                    
+                                    // আসল কমিকের লিংক
+                                    const targetLink = parts[5].trim();
+                                    
+                                    // গ্লোবাল ব্রিজ লিংকের সাথে আসল লিংক জোড়া লাগানো
+                                    const finalBridgeLink = `${GITHUB_BASE}${bridgePage}?target=${encodeURIComponent(targetLink)}`;
+
+                                    comicsData.push({
+                                        id: parts[0].trim(),
+                                        title: parts[1].trim(),
+                                        episode: parts[2].trim(),
+                                        category: parts[3].trim(),
+                                        image: parts[4].trim(),
+                                        link: finalBridgeLink // এখানে ডাইনামিক ব্রিজ লিংক বসানো হলো
+                                    });
+                                }
+                            }
+                        });
+                        renderCards(comicsData);
+                    })
+                    .catch(err => {
+                        console.error("Comics loading error:", err);
+                        document.getElementById('comicsGrid').innerHTML = '<p class="col-span-full text-center text-red-500 py-10 font-bold">ডাটা লোড করতে সমস্যা হয়েছে। দয়া করে লাইভ সার্ভার ব্যবহার করুন।</p>';
+                    });
+
+            } catch (error) {
+                console.error("System Initialization Error:", error);
+            }
+        }
+
+        // ==========================================
+        // ইউজার ইন্টারফেস ফাংশনগুলো
+        // ==========================================
+        const adImage = document.getElementById('adImage');
+        const adLink = document.getElementById('adLink');
+
+        function updateAd() {
+            if (adData.length === 0) return;
+            adImage.style.opacity = 0.5;
+            setTimeout(() => {
+                adImage.src = adData[currentAdIndex].img;
+                adLink.href = adData[currentAdIndex].link;
+                adImage.style.opacity = 1;
+                currentAdIndex = (currentAdIndex + 1) % adData.length;
+            }, 200);
+        }
+
+        const grid = document.getElementById('comicsGrid');
+        let favorites = JSON.parse(localStorage.getItem('chakraFavs')) || [];
+
+        function renderCards(data) {
+            grid.innerHTML = '';
+            if (data.length === 0) {
+                grid.innerHTML = '<p class="col-span-full text-center text-gray-500 py-10">কোনো কমিক পাওয়া যায়নি!</p>';
+                return;
+            }
+            
+            data.forEach(comic => {
+                const isFav = favorites.includes(comic.id);
+                const heartClass = isFav ? 'fas text-red-500' : 'far text-gray-400';
+                
+                const cardHTML = `
+                    <div class="comic-card glass-card rounded-2xl overflow-hidden relative group">
+                        <button onclick="toggleFav(event, '${comic.id}')" class="absolute top-3 right-3 z-10 bg-white/80 w-8 h-8 rounded-full flex items-center justify-center shadow backdrop-blur transition hover:scale-110">
+                            <i id="fav-icon-${comic.id}" class="fa-heart ${heartClass} text-lg transition-colors"></i>
+                        </button>
+                        
+                        <a href="${comic.link}" target="_self" class="block">
+                            <div class="card-image-wrapper bg-gray-200 relative">
+                                <img src="${comic.image}" alt="${comic.title}" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            </div>
+                            
+                            <div class="p-4">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-bold px-2 py-1 bg-indigo-100 text-indigo-700 rounded-md shadow-sm border border-indigo-200">ID: ${comic.id}</span>
+                                    <span class="text-sm md:text-base font-bold px-3 py-1 bg-purple-100 text-purple-800 rounded-md shadow-sm border border-purple-300">পর্ব: ${comic.episode}</span>
+                                </div>
+                                <h3 class="font-bold text-gray-800 text-lg mt-3 break-words leading-tight">${comic.title}</h3>
+                                <p class="text-sm font-medium text-gray-500 mt-2"><i class="fas fa-tag mr-1"></i>${comic.category}</p>
+                            </div>
+                        </a>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+        }
+
+        window.toggleFav = function(event, id) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const icon = document.getElementById(`fav-icon-${id}`);
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(favId => favId !== id);
+                icon.classList.replace('fas', 'far');
+                icon.classList.replace('text-red-500', 'text-gray-400');
+            } else {
+                favorites.push(id);
+                icon.classList.replace('far', 'fas');
+                icon.classList.replace('text-gray-400', 'text-red-500');
+            }
+            localStorage.setItem('chakraFavs', JSON.stringify(favorites));
+        };
+
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const filteredData = comicsData.filter(comic => comic.id.toLowerCase().includes(searchTerm));
+            renderCards(filteredData);
+        });
+
+        let currentFontSize = 16;
+        window.changeFontSize = function(step) {
+            currentFontSize += step;
+            if (currentFontSize < 12) currentFontSize = 12;
+            if (currentFontSize > 24) currentFontSize = 24;
+            document.documentElement.style.fontSize = currentFontSize + 'px';
+        };
+
+        // DOM লোড হলে অ্যাপ শুরু হবে
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
