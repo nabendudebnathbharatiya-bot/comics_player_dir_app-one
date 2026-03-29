@@ -175,10 +175,14 @@
                                 if (parts.length >= 6) {
                                     
                                     // আসল কমিকের লিংক
-                                    const targetLink = parts[5].trim();
-                                    
-                                    // গ্লোবাল ব্রিজ লিংকের সাথে আসল লিংক জোড়া লাগানো
-                                    const finalBridgeLink = `${GITHUB_BASE}${bridgePage}?target=${encodeURIComponent(targetLink)}`;
+                                    let targetLink = parts[5].trim();
+
+// যদি লিংকটি http দিয়ে শুরু না হয় (অর্থাৎ শর্টকাট লিংক হয়), তবে সেটিকে অটোমেটিক ফুল লিংকে রূপান্তর করবে
+if (!targetLink.startsWith('http')) {
+    targetLink = new URL(targetLink, window.location.href).href;
+}
+
+const finalBridgeLink = `${GITHUB_BASE}${bridgePage}?target=${encodeURIComponent(targetLink)}`;
 
                                     comicsData.push({
                                         id: parts[0].trim(),
