@@ -1,0 +1,5 @@
+//এই ফাইলে কোনো কমা বা ব্র্যাকেট নেই। শুধু একটির পর একটি তথ্য | দিয়ে আলাদা করা আছে। (ফরম্যাট: ID | Title | Episode | Category | Image Link | Target Link)
+
+101 | রানাঘাটে ভিনগ্রহী | ১ | Sci-Fi | images/bhingrohi.jpg| ranaghate_vingrohi.html
+
+---
